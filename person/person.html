@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Human Resources</title>
+
+    <!-- Fonts Start -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fonts End -->
+
+    <!-- Bootstrap Starts -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap End -->
+
+    <link rel="stylesheet" href="/styles.css" />
+    <!-- <script src="/script.js"></script> -->
+    <script src="/jquery-3.7.0.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">Human Resources</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/person/person.html">Person</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        id="businessEntityId"
+        placeholder="Business Entity ID"
+      />
+      <button
+        class="btn btn-outline-secondary"
+        id="searchBusinessEntityId"
+        type="button"
+      >
+        Search
+      </button>
+    </div>
+
+    <div id="personData"></div>
+
+    <script>
+      $(document).ready(function () {
+        $("#searchBusinessEntityId").click(function () {
+          var userInput =
+            "https://localhost:7274/Person/GetPersonAndPhoneByKey?BusinessEntityID=" +
+            $("#businessEntityId").val();
+
+          $.getJSON(userInput, function (data) {
+            var person = data[0];
+
+            // Menampilkan data pada elemen dengan id "personData"
+            var html =
+              "<h2>" + person.firstName + " " + person.lastName + "</h2>";
+            html += "<p>Person Type: " + person.personType + "</p>";
+            html += "<p>Birthdate: " + person.birthdate + "</p>";
+            html += "<p>Age: " + person.age + "</p>";
+            html +=
+              "<p>Phone Number: " + person.personPhones[0].phoneNumber + "</p>";
+
+            $("#personData").html(html);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
