@@ -1,0 +1,43 @@
+body {
+  font-family: "Open Sans";
+  color: #606c5d;
+  background-color: #f6f6f6;
+}
+
+.container-fluid {
+  padding: 3% 15% 0 15%;
+}
+
+/* Navigation Bar */
+.navbar {
+  padding: 0 0 2.5rem;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #606c5d;
+}
+
+.nav-item {
+  padding: 0 10px;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.title-heading {
+  padding: 0 15% 0 15%;
+}
+
+hr {
+  margin: 0;
+}
+
+.button-search {
+  margin-left: 285px;
+  margin-top: 25px;
+}
